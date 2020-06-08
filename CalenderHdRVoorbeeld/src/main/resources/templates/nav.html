@@ -1,0 +1,39 @@
+<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+
+    <h1 th:text="#{navigation}"/>
+    <li><a href="/">Index</a></li>
+    <li sec:authorize="isAuthenticated()"><a href="/tasks" th:text="#{tasks}">Tasks</a></li>
+    <li sec:authorize="hasAuthority('ADMIN')"><a href="/tasks/new" th:text="#{createTask}"></a></li>
+
+
+
+    <li sec:authorize="permitAll()">
+<button onClick="
+if (window.location.href.match('.*\?lang\=..')){
+                window.location.replace(window.location.href.substring(0,window.location.href.length-8) +'?lang=en')}
+            else if (window.location.href.match('.*\\?{1}')){
+                window.location.replace(window.location.href.substring(0,window.location.href.length-1) +'?lang=en');
+            }
+            else {
+                window.location.replace(window.location.href +'?lang=en');
+            }" th:text="#{lang.eng}"/>
+    </li><li><button onClick="
+if (window.location.href.match('.*\?lang\=..')){
+                window.location.replace(window.location.href.substring(0,window.location.href.length-8) +'?lang=nl')}
+            else if (window.location.href.match('.*\\?{1}')){
+                window.location.replace(window.location.href.substring(0,window.location.href.length-1) +'?lang=nl');
+            }
+            else {
+                window.location.replace(window.location.href +'?lang=nl');
+            }"th:text="#{lang.nl}"/>
+    </li>
+
+
+<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+    <button class="button" type="submit"><span th:text="#{signof}"/></button>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>

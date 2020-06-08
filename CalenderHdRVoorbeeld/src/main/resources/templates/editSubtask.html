@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{titleEditSubtask}"/>
+    <nav th:insert="nav"/>
+</head>
+<body>
+<h1 th:text="#{editSubtask}"/>
+<div th:if="${title==null || description == null}">
+    <p th:text="#{error.subtaskNotFound}"/> </div>
+
+<div th:if="${title!=null && description != null}">
+<form method="post" th:action="'/tasks/'+${taskId}+'/sub/'+${subtaskid}+'/edit/'" >
+
+    <label for="title" th:text="#{label.title}">: </label>
+    <input type="text" name="title" id="title" th:value="${title}"><br>
+    <label for="description" th:text="#{label.description}">: </label>
+    <input type="text" name="description" id="description" th:value="${description}"><br>
+    <button class="button" type="submit"><span th:text="#{label.edit}"/></button>
+
+</form>
+</div>
+
+</body>
+</html>

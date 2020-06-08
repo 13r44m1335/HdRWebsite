@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{titleTasks}"/>
+    <nav th:insert="nav"/>
+</head>
+<body>
+<h1 th:text="#{tasks}"/>
+<table>
+
+    <tbody>
+    <div th:if="${tasks.isEmpty()}">
+        <tr>
+            <td th:text="#{error.noTasks}"/>
+        </tr>
+    </div>
+
+
+    <tr th:each="task : ${tasks}">
+
+        <td th:text="${task.title} +' '+ #{due} + ${task.dueDateString}"/>
+        <td>
+            <form th:action="'/tasks/'+${task.id}" style="border: none;">
+
+            <button class="button" type="submit"><span th:text="#{detail}"/></button>
+        </form>
+        </td>
+
+        <td sec:authorize="hasAuthority('ADMIN')">
+            <form th:action="'/tasks/edit/'+${task.id}" style="border: none;">
+
+            <button class="button" type="submit"><span th:text="#{label.editTask}"/></button>
+            </form>
+
+        </td>
+
+        <td sec:authorize="hasAuthority('ADMIN')">
+            <form th:action="'/tasks/'+${task.id}+'/remove'" style="border: none;">
+
+                <button class="button" type="submit"><span th:text="#{removeTask}"/></button>
+            </form>
+
+        </td>
+
+
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

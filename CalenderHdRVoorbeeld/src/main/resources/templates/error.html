@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{titleErrorPage}"/>
+    <nav th:insert="nav"/>
+</head>
+<body>
+<h1>Error Page</h1>
+<p th:if="${!#fields.globalErrors().isEmpty()}" th:text="${#fields.globalErrors()}"></p>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{titleCreateTask}"/>
+
+    <nav th:insert="nav"/>
+</head>
+<body>
+<h1 th:text="#{createTask}"/>
+<div th:if="${errors!= null}">
+    <p th:text=" ${errors}"/>
+</div>
+<form th:method="post" th:action="@{/tasks/createTask}" >
+
+
+    <h2 th:text="#{newTask}"/>
+    <label for="title" th:text="#{label.title}">: </label>
+    <input type="text" name="title" id="title" >
+    <br>
+    <label for="description" th:text="#{label.description}">: </label>
+    <input type="text" name="description" id="description">
+    <br>
+    <label for="dueDate" th:text="#{label.duedate}">: </label>
+    <input type="datetime-local" name="dueDate" id="dueDate" placeholder="yyyy-mm-ddT08:30">
+    <br>
+    <button class="button" type="submit"><span th:text="#{submit}"/> </button>
+</form>
+</body>
+</html>

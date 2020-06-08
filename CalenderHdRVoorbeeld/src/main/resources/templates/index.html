@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{titleIndex}"/>
+</head>
+<body>
+<nav th:insert="nav"/>
+<h1 th:text="#{titleIndex}"/>
+
+<p th:text="#{welcome}"/>
+<p><div th:text="#{loggedas}"/> <span sec:authentication="name"/>
+    <div th:text="#{roles}"/> <span sec:authentication="principal.authorities"/></p>
+
+
+</body>
+</html>

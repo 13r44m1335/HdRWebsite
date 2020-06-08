@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{signup}"/>
+    <nav th:insert="nav"/>
+</head>
+
+<body>
+<h1 th:text="#{signup}"/>
+<form th:method="post" th:action="@{/signup}" th:object="${user}">
+    <p th:if="${!#fields.globalErrors().isEmpty()}" th:text="${#fields.globalErrors()}"></p>
+    <div>
+        <label for="username" th:text="#{label.username}">:</label>
+        <input type="text" th:field="*{username}">
+        <p th:errors="*{username}"></p>
+    </div>
+    <div>
+        <label for="password" th:text="#{label.password}">:</label>
+        <input type="password" th:field="*{password}">
+    </div>
+    <div>
+        <input type="radio" id="admin" for="userRole" name="userRole" value="ADMIN">
+        <label id="o1" th:text="Admin"/><br>
+        <input type="radio" id="user" for="userRole" name="userRole" value="USER">
+        <label id="o2" th:text="#{label.user}"/><br>
+
+    </div>
+    <input type="submit" th:value="#{signup}">
+</form>
+</body>
+</html>
+
